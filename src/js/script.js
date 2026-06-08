@@ -3,6 +3,7 @@ let altura
 let largura
 const body = document.querySelector('body')
 let vidas = 1
+let tempo = 10
 
 //AJUSTE DE TAMANHO DE TELA
 function ajustarTela(){
@@ -12,6 +13,21 @@ function ajustarTela(){
 body.addEventListener('resize', ajustarTela)
 ajustarTela()
 
+document.querySelector('#tempo').innerHTML = tempo
+
+let cronometro = setInterval(() => {
+    
+    tempo -= 1
+    if(tempo < 0){
+        clearInterval(cronometro)
+        clearInterval(criaMosca)
+        window.location.href = 'vitoria.html'
+    }else{
+    document.querySelector('#tempo').innerHTML = tempo
+    }
+}, 1000);
+
+
 //MOSQUITO
 function criarMosquito(){
 
@@ -20,7 +36,9 @@ function criarMosquito(){
             document.querySelector('#mosquito').remove()
             
             if(vidas > 3){
-                alert("Game over")
+                
+                window.location.href = 'game-over.html'
+                
             }else{
             document.querySelector('#v' + vidas).src = './src/assets/img/coracao_vazio.png'
             vidas++
@@ -81,6 +99,6 @@ function ladoAleatorio(){
 }
 
 
- setInterval(function(){
+ const criaMosca = setInterval(function(){
             criarMosquito()
         }, 1000)
