@@ -5,6 +5,20 @@ const body = document.querySelector('body')
 let vidas = 1
 let tempo = 10
 
+let nivel = window.location.search
+nivel = nivel.replace('?', '')
+
+let criaMosquitoTempo = 1500;
+
+if(nivel == "normal"){
+    criaMosquitoTempo = 1500
+}else if(nivel == "dificil"){
+    criaMosquitoTempo = 1000
+}else if (nivel == "detetizador"){
+    criaMosquitoTempo = 750
+}
+
+
 //AJUSTE DE TAMANHO DE TELA
 function ajustarTela(){
     altura = window.innerHeight
@@ -101,4 +115,4 @@ function ladoAleatorio(){
 
  const criaMosca = setInterval(function(){
             criarMosquito()
-        }, 1000)
+        }, criaMosquitoTempo)
