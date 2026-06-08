@@ -13,6 +13,13 @@ ajustarTela()
 
 //MOSQUITO
 function criarMosquito(){
+
+    //REMOVER ANTERIOR(CASO EXISTA)
+        if(document.querySelector('#mosquito')){
+            document.querySelector('#mosquito').remove()
+        }
+
+
 //POSIÇÕES ALEATORIAS
 let posicaoX = Math.floor(Math.random() * largura) - 90
 let posicaoY = Math.floor(Math.random() * altura) - 90
@@ -25,10 +32,14 @@ let mosquito = document.createElement('img')
     mosquito.style.left = posicaoX + 'px'
     mosquito.style.top = posicaoY + 'px'
     mosquito.style.position = 'absolute'
+    mosquito.id = 'mosquito'
 
 document.body.appendChild(mosquito)
+
 }
-criarMosquito()
+
+
+
 
 //TAMANHO DE MOSQUITO ALEATÓRIO
 function tamanhoAleatorio(){
@@ -56,3 +67,8 @@ function ladoAleatorio(){
             return 'ladoB'
     }
 }
+
+
+ setInterval(function(){
+            criarMosquito()
+        }, 1000)
