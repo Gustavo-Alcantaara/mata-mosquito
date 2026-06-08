@@ -2,6 +2,7 @@
 let altura
 let largura
 const body = document.querySelector('body')
+let vidas = 1
 
 //AJUSTE DE TAMANHO DE TELA
 function ajustarTela(){
@@ -17,6 +18,13 @@ function criarMosquito(){
     //REMOVER ANTERIOR(CASO EXISTA)
         if(document.querySelector('#mosquito')){
             document.querySelector('#mosquito').remove()
+            
+            if(vidas > 3){
+                alert("Game over")
+            }else{
+            document.querySelector('#v' + vidas).src = './src/assets/img/coracao_vazio.png'
+            vidas++
+            }
         }
 
 
@@ -33,6 +41,10 @@ let mosquito = document.createElement('img')
     mosquito.style.top = posicaoY + 'px'
     mosquito.style.position = 'absolute'
     mosquito.id = 'mosquito'
+
+    mosquito.addEventListener('click', function(){
+        this.remove()
+    })
 
 document.body.appendChild(mosquito)
 
